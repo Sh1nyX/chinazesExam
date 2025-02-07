@@ -1,0 +1,5 @@
+﻿  Source.cpp
+C:\Users\Danii\source\repos\ExamWork\ExamWork\Gibbet.h(42,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "Source.cpp")
+  
+  ExamWork.vcxproj -> C:\Users\Danii\source\repos\ExamWork\x64\Debug\ExamWork.exe

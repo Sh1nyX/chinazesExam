@@ -1,0 +1,11 @@
+apple
+banana
+car
+dog
+elephant
+fish
+guitar
+house
+island
+jacket
+goyda
