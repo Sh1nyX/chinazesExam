@@ -11,7 +11,7 @@ class Gibbet
 
 	std::vector<std::string> m_wordList; //—писок сл≥в €к≥ можуть випадати гравцю) 
 
-	std::vector<char> m_player_letters; //л≥тери, €к≥ вводив гравець прот€гом гри (раунду) 
+	std::vector<char> m_playerLetters; //л≥тери, €к≥ вводив гравець прот€гом гри (раунду) 
 
 	std::chrono::time_point<std::chrono::high_resolution_clock> startTime; //“очка часу початку гри 
 
@@ -31,6 +31,14 @@ public:
 	void printStats(double duration, bool& isCorrect, size_t& attempts) const; //виводить у консоль статистику
 
 	void printGibbet(size_t incorrectAttempts); //виводить у консоль шибеницю
+
+	void printGibbet0();
+	void printGibbet1();
+	void printGibbet2();
+	void printGibbet3();
+	void printGibbet4();
+	void printGibbet5();
+	void printGibbet6();
 
 	Gibbet() //конструктор класу (на початку програми створюЇ файл та лог≥ку випадкових чисел) 
 	{

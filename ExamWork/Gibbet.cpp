@@ -73,7 +73,7 @@ void Gibbet::start_resetGame() //функція запускає гру та анулює значення після ї
 {
 	currentWord = getRandomWord(); //присвоюємо значення випадкового слова для подальших перевірок протягом гри
 	system("cls"); 
-	m_player_letters.clear();  //очищуємо список з літерами, що вводив гравець
+	m_playerLetters.clear();  //очищуємо список з літерами, що вводив гравець
 	startTime = std::chrono::high_resolution_clock::now(); //створюємо точку часу початку гри
 }
 
@@ -81,12 +81,12 @@ void Gibbet::makeAttempt(char letter) //функція для здійснення спроби (додає літ
 {
 	try
 	{
-		for (char guessed_letter : m_player_letters) //проходимо по вєктору літер, що вводив гравець
+		for (char guessed_letter : m_playerLetters) //проходимо по вєктору літер, що вводив гравець
 		{
 			if (guessed_letter == letter) //якщо така літера вже є, викидаємо вийняток
 				throw std::invalid_argument("You already guessed that letter!");
 		}
-		m_player_letters.push_back(letter); //якщо все гаразд, то додаємо літеру у список
+		m_playerLetters.push_back(letter); //якщо все гаразд, то додаємо літеру у список
 	}
 	catch (const std::invalid_argument& e) //обробка вийнятків
 	{
@@ -96,7 +96,7 @@ void Gibbet::makeAttempt(char letter) //функція для здійснення спроби (додає літ
 
 const std::vector<char>& Gibbet::getGuessedLetters() const //повертає вєктор з літерами, що ввів гравець
 {
-	return m_player_letters; 
+	return m_playerLetters; 
 }
 
 void Gibbet::printStats(double duration, bool& isCorrect, size_t& attempts) const //виводить у консоль статистику гравця за гру
@@ -112,7 +112,7 @@ void Gibbet::printStats(double duration, bool& isCorrect, size_t& attempts) cons
 	std::cout << "\nNumber of attempts: " << attempts; //кількість спроб
 	std::cout << "\nGame duration: " << duration << " seconds"; //час, витрачений на те, щоб вгадати
 	std::cout << "\nGuessed letters: "; //список літер, які ввів гравець (правильні та неправильні) 
-	for (char c : m_player_letters) //виводимо ці літери
+	for (char c : m_playerLetters) //виводимо ці літери
 	{
 		std::cout << c << " "; 
 	}
@@ -125,62 +125,62 @@ void Gibbet::printGibbet(size_t incorrectAttempts) //графічний вивід шибениці (в
 	switch (incorrectAttempts)
 	{
 		case 0:
-			std::cout << "______\n";
-			std::cout << "|     |\n";
-			std::cout << "|      \n";
-			std::cout << "|        \n";
-			std::cout << "|        \n";
-			std::cout << "|_____\n";
+			printGibbet0(); 
 			break;
 		case 1:
-			std::cout << "______\n";
-			std::cout << "|     | \n";
-			std::cout << "|     0  \n";
-			std::cout << "|        \n";
-			std::cout << "|        \n";
-			std::cout << "|_____\n";
+			printGibbet1();
 			break;
 		case 2:
-			std::cout << "______\n";
-			std::cout << "|     | \n";
-			std::cout << "|     0  \n";
-			std::cout << "|     |   \n";
-			std::cout << "|        \n";
-			std::cout << "|_____\n";
+			printGibbet2();
 			break;
 		case 3:
-			std::cout << "______\n";
-			std::cout << "|     |\n";
-			std::cout << "|     0\n";
-			std::cout << "|    -| \n";
-			std::cout << "|        \n";
-			std::cout << "|_____\n";
+			printGibbet3();
 			break;
 		case 4:
-			std::cout << "______\n";
-			std::cout << "|     | \n";
-			std::cout << "|     0 \n";
-			std::cout << "|    -|- \n";
-			std::cout << "|       \n";
-			std::cout << "|_____\n";
+			printGibbet4();
 			break;
 		case 5:
-			std::cout << "______\n";
-			std::cout << "|     |\n";
-			std::cout << "|     0 \n";
-			std::cout << "|    -|- \n";
-			std::cout << "|    |  \n";
-			std::cout << "|_____\n";
+			printGibbet5();
 			break;
 		case 6:
-			std::cout << "______\n";
-			std::cout << "|     | \n";
-			std::cout << "|     0 \n";
-			std::cout << "|    -|- \n";
-			std::cout << "|    | | \n";
-			std::cout << "|_____\n";
+			printGibbet6();
 			break;
 	}
+}
+
+void Gibbet::printGibbet0()
+{
+	std::cout << "______\n|    |\n|      \n|       \n|       \n|_____\n";
+}
+
+void Gibbet::printGibbet1()
+{
+	std::cout << "______\n|    | \n|    0  \n|       \n|       \n|_____\n";
+}
+
+void Gibbet::printGibbet2()
+{
+	std::cout << "______\n|    | \n|    0  \n|    |   \n|       \n|_____\n";
+}
+
+void Gibbet::printGibbet3()
+{
+	std::cout << "______\n|    |\n|    0\n|   -| \n|       \n|_____\n";
+}
+
+void Gibbet::printGibbet4()
+{
+	std::cout << "______\n|    | \n|    0 \n|   -|- \n|      \n|_____\n";
+}
+
+void Gibbet::printGibbet5()
+{
+	std::cout << "______\n|    |\n|    0 \n|   -|- \n|   |  \n|_____\n";
+}
+
+void Gibbet::printGibbet6()
+{
+	std::cout << "______\n|    | \n|    0 \n|   -|- \n|   | | \n|_____\n";
 }
 
 
